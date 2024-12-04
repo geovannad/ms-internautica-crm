@@ -14,6 +14,7 @@ import java.util.List;
 @Document(collection = "boats")
 public class Boat {
     @Id
+    private String id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBoat;
 

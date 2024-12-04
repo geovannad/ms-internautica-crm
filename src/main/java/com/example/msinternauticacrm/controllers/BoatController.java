@@ -2,7 +2,6 @@ package com.example.msinternauticacrm.controllers;
 
 import com.example.msinternauticacrm.models.Boat;
 import com.example.msinternauticacrm.services.BoatService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
@@ -36,8 +35,8 @@ public class BoatController {
 
     @GetMapping("/get-by-id/{id}")
     public ResponseEntity<Boat> getBoatById(@PathVariable Long id) {
-        Optional<Boat> boat = boatService.getBoatById(id);
-        return boat.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        Boat boat = boatService.getBoatById(id);
+        return new ResponseEntity<>(boat, HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
@@ -46,7 +45,7 @@ public class BoatController {
         return new ResponseEntity<>(updatedBoat, HttpStatus.OK);
     }
 
-    @DeleteMapping("/detete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteBoat(@PathVariable Long id) {
         boolean isDeleted = boatService.deleteBoat(id);
         if (isDeleted) {
