@@ -8,7 +8,8 @@ import org.springframework.data.repository.Repository;
 import java.util.Optional;
 
 @org.springframework.stereotype.Repository
-public interface AdmRepository  extends Repository<Adm, String> {
+public interface AdmRepository  extends Repository<Adm, String>, MongoRepository<Adm, String> {
 
     Optional<Adm> findAdmByEmail(String email);
+    boolean existsByEmail(String email);
 }
