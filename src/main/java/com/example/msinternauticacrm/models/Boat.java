@@ -1,15 +1,18 @@
 package com.example.msinternauticacrm.models;
-
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 @Builder
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "boats")
 public class Boat {
-
     @Id
     private String id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -96,6 +99,5 @@ public class Boat {
 
     private String observationsAdm;
     private String observationsPublish;
-
 
 }
