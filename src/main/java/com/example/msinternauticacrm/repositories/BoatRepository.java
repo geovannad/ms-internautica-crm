@@ -6,6 +6,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.Repository;
 
 @org.springframework.stereotype.Repository
-public interface BoatRepository extends Repository<Boat, Long>, MongoRepository<Boat, Long>, PagingAndSortingRepository<Boat, Long> {
+public interface BoatRepository extends Repository<Boat, String>, MongoRepository<Boat, String>, PagingAndSortingRepository<Boat, String> {
 
 }

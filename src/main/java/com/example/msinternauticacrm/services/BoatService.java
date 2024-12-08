@@ -19,22 +19,17 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class BoatService {
-
-    @Autowired
     private BoatRepository boatRepository;
 
     public Boat createBoat(Boat boat) {
-
         return boatRepository.save(boat);
     }
 
-
-    public Optional<Boat> getBoatById(Long id) {
+    public Optional<Boat> getBoatById(String id) {
         return boatRepository.findById(id);
     }
 
-
-    public Boat updateBoat(Long id, Boat boatDetails) {
+    public Boat updateBoat(String  id, Boat boatDetails) {
         Boat existingBoat = boatRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Boat not found"));
 
@@ -42,7 +37,7 @@ public class BoatService {
         return boatRepository.save(existingBoat);
     }
 
-    public boolean deleteBoat(Long id) {
+    public boolean deleteBoat(String id) {
         if (boatRepository.existsById(id)) {
             boatRepository.deleteById(id);
             return true;
@@ -50,8 +45,8 @@ public class BoatService {
         return false;
     }
 
-    public Page<Boat> listBoats(Pageable pageable){
-        return boatRepository.findAll(pageable);
-    }
+//    public Page<Boat> listBoats(Pageable pageable){
+//        return boatRepository.findAll(pageable);
+//    }
 
 }
