@@ -1,5 +1,6 @@
 package com.example.msinternauticacrm.services;
 
+import com.example.msinternauticacrm.exception.NotFound;
 import com.example.msinternauticacrm.models.Adm;
 import com.example.msinternauticacrm.models.Boat;
 import com.example.msinternauticacrm.models.Sailor;
@@ -25,21 +26,29 @@ public class BoatService {
         return boatRepository.save(boat);
     }
 
-    public Optional<Boat> getBoatById(String id) {
-        return boatRepository.findById(id);
+
+    public Boat getBoatById(Long id) {
+        return boatRepository.findBoatsByIdBoat(id);
     }
 
-    public Boat updateBoat(String  id, Boat boatDetails) {
-        Boat existingBoat = boatRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Boat not found"));
+
+    public Boat updateBoat(Long id, Boat boatDetails) {
+        Boat existingBoat = boatRepository.findBoatsByIdBoat(id);
+
+        if(existingBoat == null){
+            throw new NotFound("Not found boat");
+        }
+
 
         BeanUtils.copyProperties(boatDetails, existingBoat, "idBoat");
         return boatRepository.save(existingBoat);
     }
 
-    public boolean deleteBoat(String id) {
-        if (boatRepository.existsById(id)) {
-            boatRepository.deleteById(id);
+
+    public boolean deleteBoat(Long id) {
+        if (boatRepository.existsBoatByIdBoat(id)) {
+            boatRepository.deleteBoatByIdBoat(id);
+
             return true;
         }
         return false;
