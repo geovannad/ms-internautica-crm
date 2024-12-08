@@ -20,12 +20,9 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class BoatService {
-
-    @Autowired
     private BoatRepository boatRepository;
 
     public Boat createBoat(Boat boat) {
-
         return boatRepository.save(boat);
     }
 
@@ -42,20 +39,23 @@ public class BoatService {
             throw new NotFound("Not found boat");
         }
 
+
         BeanUtils.copyProperties(boatDetails, existingBoat, "idBoat");
         return boatRepository.save(existingBoat);
     }
 
+
     public boolean deleteBoat(Long id) {
         if (boatRepository.existsBoatByIdBoat(id)) {
             boatRepository.deleteBoatByIdBoat(id);
+
             return true;
         }
         return false;
     }
 
-    public Page<Boat> listBoats(Pageable pageable){
-        return boatRepository.findAll(pageable);
-    }
+//    public Page<Boat> listBoats(Pageable pageable){
+//        return boatRepository.findAll(pageable);
+//    }
 
 }
