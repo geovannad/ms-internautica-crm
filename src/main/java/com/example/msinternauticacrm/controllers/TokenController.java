@@ -41,23 +41,28 @@ public class TokenController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping("/login")
+   @PostMapping("/login")
     public ResponseEntity login(@Valid @RequestBody LoginDTO loginRequest) {
-        Optional<Adm> adm = admRepository.findAdmByEmail(loginRequest.email());
-        if (adm != null && passwordEncoder.matches(loginRequest.password(), adm.get().getPassword())) {
-            try {
-                String token = Jwts.builder()
-                        .setSubject(loginRequest.email())
-                        .claim("auth", Collections.emptyList())
-                        .setExpiration(new Date(System.currentTimeMillis() + 86_400_000))
-                        .signWith(secretKey, SignatureAlgorithm.HS512)
-                        .compact();
-                return ResponseEntity.ok( "Bearer " + token);
-            } catch (Exception e) {
-                return new ResponseEntity<>("Error generating token JWT", HttpStatus.INTERNAL_SERVER_ERROR);
+        boolean existAdm = admRepository.existsByEmail(loginRequest.email());
+        if(existAdm) {
+            Optional<Adm> adm = admRepository.findAdmByEmail(loginRequest.email());
+            if (passwordEncoder.matches(loginRequest.password(), adm.get().getPassword())) {
+                try {
+                    String token = Jwts.builder()
+                            .setSubject(loginRequest.email())
+                            .claim("auth", Collections.emptyList())
+                            .setExpiration(new Date(System.currentTimeMillis() + 86_400_000))
+                            .signWith(secretKey, SignatureAlgorithm.HS512)
+                            .compact();
+                    return ResponseEntity.ok("Bearer " + token);
+                } catch (Exception e) {
+                    return new ResponseEntity<>("Error generating token JWT", HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            } else {
+                return new ResponseEntity<>("Invalid credentials - password", HttpStatus.UNAUTHORIZED);
             }
-        } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }else {
+            return new ResponseEntity<>("Invalid credentials - email", HttpStatus.UNAUTHORIZED);
         }
     }
 
