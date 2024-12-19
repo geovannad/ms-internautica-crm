@@ -1,5 +1,6 @@
 package com.example.msinternauticacrm.services;
 
+import com.example.msinternauticacrm.DTOs.FindBoatAll;
 import com.example.msinternauticacrm.exception.NotFound;
 import com.example.msinternauticacrm.models.Adm;
 import com.example.msinternauticacrm.models.Boat;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -54,8 +56,30 @@ public class BoatService {
         return false;
     }
 
-    public List<Boat> listBoats(){
-        return boatRepository.findAll();
+    public List<FindBoatAll> listBoats() {
+        List<Boat> resultRepository = boatRepository.findAll();
+
+        List<FindBoatAll> result = resultRepository.stream()
+                .map(boat -> new FindBoatAll(
+                        boat.getId(),
+                        null,
+                        boat.getNameVessel(),
+                        boat.getManufacturer(),
+                        boat.getModel(),
+                        boat.getSize(),
+                        boat.getYear(),
+                        null,
+                        null,
+                        boat.getHours(),
+                        boat.getMarina(),
+                        boat.getValue(),
+                        null,
+                        boat.getStatus()
+                ))
+                .collect(Collectors.toList());
+
+        return result;
     }
+
 
 }

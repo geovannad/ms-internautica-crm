@@ -1,5 +1,6 @@
 package com.example.msinternauticacrm.controllers;
 
+import com.example.msinternauticacrm.DTOs.FindBoatAll;
 import com.example.msinternauticacrm.models.Boat;
 import com.example.msinternauticacrm.services.BoatService;
 import jakarta.validation.Valid;
@@ -22,7 +23,7 @@ public class BoatController {
     private BoatService boatService;
 
     @GetMapping("/find-all")
-    public ResponseEntity<List<Boat>> findAll(){
+    public ResponseEntity<List<FindBoatAll>> findAll(){
         return new ResponseEntity<>(boatService.listBoats(), HttpStatus.OK);
     }
 
