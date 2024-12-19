@@ -15,13 +15,13 @@ public record FindBoatAll(
         String name,
         String manufacturer,
         String model,
-        double size,
-        int year,
+        Double size,
+        Integer year,
         String engines,
         String engine,
-        int hours,
+        Integer hours,
         String marina,
-        double value,
+        Double value,
         String collector,
         String status
 ) {}
