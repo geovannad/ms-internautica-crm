@@ -53,22 +53,27 @@ public class BoatService {
         List<Boat> resultRepository = boatRepository.findAll();
 
         List<FindBoatAllDTO> result = resultRepository.stream()
-                .map(boat -> new FindBoatAllDTO(
-                        boat.getId(),
-                        boat.getPhotos().get(0),
-                        boat.getNameVessel(),
-                        boat.getManufacturer(),
-                        boat.getModel(),
-                        boat.getSize(),
-                        boat.getYear(),
-                        boat.getAmount(),
-                        boat.getModelPower(),
-                        boat.getHours(),
-                        boat.getMarina(),
-                        boat.getValue(),
-                        boat.getPickups(),
-                        boat.getStatus()
-                ))
+                .map(boat -> {
+                    String photo = "";
+                    if(boat.getPhotos() != null) {
+                         photo = boat.getPhotos().get(0);
+                    }
+                    return new FindBoatAllDTO(
+                    boat.getId(),
+                    photo,
+                    boat.getNameVessel(),
+                    boat.getManufacturer(),
+                    boat.getModel(),
+                    boat.getSize(),
+                    boat.getYear(),
+                    boat.getAmount(),
+                    boat.getModelPower(),
+                    boat.getHours(),
+                    boat.getMarina(),
+                    boat.getValue(),
+                    boat.getPickups(),
+                    boat.getStatus()
+                );})
                 .collect(Collectors.toList());
 
         return result;
