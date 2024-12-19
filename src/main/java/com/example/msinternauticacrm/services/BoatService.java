@@ -54,8 +54,8 @@ public class BoatService {
         return false;
     }
 
-    public Page<Boat> listBoats(Pageable pageable){
-        return boatRepository.findAll(pageable);
+    public List<Boat> listBoats(){
+        return boatRepository.findAll();
     }
 
 }

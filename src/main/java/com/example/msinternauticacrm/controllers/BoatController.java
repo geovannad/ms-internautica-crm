@@ -22,8 +22,8 @@ public class BoatController {
     private BoatService boatService;
 
     @GetMapping("/find-all")
-    public ResponseEntity<List<Boat>> findAll(Pageable pageable){
-        return new ResponseEntity<>(boatService.listBoats(pageable).getContent(), HttpStatus.OK);
+    public ResponseEntity<List<Boat>> findAll(){
+        return new ResponseEntity<>(boatService.listBoats(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
