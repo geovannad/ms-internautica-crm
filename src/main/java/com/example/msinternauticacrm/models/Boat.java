@@ -18,6 +18,8 @@ public class Boat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBoat;
 
+    private List<String> photos;
+
     @NotBlank(message = "Manufacturer is required.")
     private String manufacturer;
 
@@ -50,7 +52,7 @@ public class Boat {
 
     @NotNull(message = "Model power is required.")
     @DecimalMin(value = "0.1", message = "Model power must be positive.")
-    private Double modelPower;
+    private String modelPower;
 
     @NotNull(message = "Year of engine is required.")
     @Min(value = 1900, message = "Engine year must be after 1900.")

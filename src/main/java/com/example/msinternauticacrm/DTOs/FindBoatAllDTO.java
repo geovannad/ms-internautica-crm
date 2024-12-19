@@ -1,15 +1,6 @@
 package com.example.msinternauticacrm.DTOs;
 
-import com.example.msinternauticacrm.models.Announcement;
-import com.example.msinternauticacrm.models.Owner;
-import com.example.msinternauticacrm.models.Sailor;
-import jakarta.persistence.*;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-
-import java.util.List;
-
-public record FindBoatAll(
+public record FindBoatAllDTO(
         String id,
         String photo,
         String name,
@@ -17,7 +8,7 @@ public record FindBoatAll(
         String model,
         Double size,
         Integer year,
-        String engines,
+        Integer engines,
         String engine,
         Integer hours,
         String marina,

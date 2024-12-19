@@ -1,19 +1,15 @@
 package com.example.msinternauticacrm.controllers;
 
-import com.example.msinternauticacrm.DTOs.FindBoatAll;
+import com.example.msinternauticacrm.DTOs.FindBoatAllDTO;
 import com.example.msinternauticacrm.models.Boat;
 import com.example.msinternauticacrm.services.BoatService;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -23,7 +19,7 @@ public class BoatController {
     private BoatService boatService;
 
     @GetMapping("/find-all")
-    public ResponseEntity<List<FindBoatAll>> findAll(){
+    public ResponseEntity<List<FindBoatAllDTO>> findAll(){
         return new ResponseEntity<>(boatService.listBoats(), HttpStatus.OK);
     }
 
