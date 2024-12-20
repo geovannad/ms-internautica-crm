@@ -1,7 +1,7 @@
 package com.example.msinternauticacrm.DTOs;
 
 public record FindBoatAllDTO(
-        String id,
+        Long id,
         String photo,
         String name,
         String manufacturer,

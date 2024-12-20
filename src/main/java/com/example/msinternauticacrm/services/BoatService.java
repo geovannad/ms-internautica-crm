@@ -59,7 +59,7 @@ public class BoatService {
                          photo = boat.getPhotos().get(0);
                     }
                     return new FindBoatAllDTO(
-                    boat.getId(),
+                    boat.getIdBoat(),
                     photo,
                     boat.getNameVessel(),
                     boat.getManufacturer(),
