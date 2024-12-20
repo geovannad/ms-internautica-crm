@@ -25,12 +25,12 @@ public class BoatService {
     }
 
 
-    public Boat getBoatById(Long id) {
+    public Boat getBoatById(int id) {
         return boatRepository.findBoatsByIdBoat(id);
     }
 
 
-    public Boat updateBoat(Long id, Boat boatDetails) {
+    public Boat updateBoat(int id, Boat boatDetails) {
         Boat existingBoat = boatRepository.findBoatsByIdBoat(id);
 
         if(existingBoat == null){
@@ -41,7 +41,7 @@ public class BoatService {
         return boatRepository.save(existingBoat);
     }
 
-    public boolean deleteBoat(Long id) {
+    public boolean deleteBoat(int id) {
         if (boatRepository.existsBoatByIdBoat(id)) {
             boatRepository.deleteBoatByIdBoat(id);
             return true;
