@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 @Builder
@@ -16,6 +17,7 @@ public class Boat {
     @Id
     private String id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Field(name = "id_boat")
     private int idBoat;
 
     private List<String> photos;
@@ -33,9 +35,11 @@ public class Boat {
     @NotNull(message = "Year is required.")
     @Min(value = 1900, message = "Year must be after 1900.")
     @Max(value = 2100, message = "Year must be before 2100.")
+    @Field(name = "year_engine")
     private Integer year;
 
     @NotBlank(message = "Vessel name is required.")
+    @Field(name = "name_vessel")
     private String nameVessel;
 
     private String marina;
@@ -52,6 +56,7 @@ public class Boat {
 
     @NotNull(message = "Model power is required.")
     @DecimalMin(value = "0.1", message = "Model power must be positive.")
+    @Field(name = "model_power")
     private String modelPower;
 
     @NotNull(message = "Year of engine is required.")
