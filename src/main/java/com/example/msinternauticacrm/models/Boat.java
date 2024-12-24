@@ -82,7 +82,7 @@ public class Boat {
     private Boolean stern;
 
     private String outdrive;
-    private String pickups;
+    private boolean pickups;
 
     @Embedded
     @Valid
