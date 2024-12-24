@@ -75,6 +75,9 @@ public class Boat {
     @NotNull(message = "IPS status is required.")
     private Boolean ips;
 
+    @NotNull(message = "Surface status is required.")
+    private Boolean surface;
+
     @NotNull(message = "Bridle status is required.")
     private Boolean bridle;
 
@@ -82,7 +85,8 @@ public class Boat {
     private Boolean stern;
 
     private String outdrive;
-    private String pickups;
+
+    private List<String> pickups;
 
     @Embedded
     @Valid

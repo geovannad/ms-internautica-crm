@@ -71,7 +71,7 @@ public class BoatService {
                     boat.getHours(),
                     boat.getMarina(),
                     boat.getValue(),
-                    boat.getPickups(),
+                    boat.getOwner().getEmail(),
                     boat.getStatus()
                 );})
                 .collect(Collectors.toList());
