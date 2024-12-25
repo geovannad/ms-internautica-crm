@@ -74,6 +74,8 @@ public class Boat {
 
     @NotNull(message = "IPS status is required.")
     private Boolean ips;
+    @NotNull(message = "Surface status is required.")
+    private Boolean surface;
 
     @NotNull(message = "Bridle status is required.")
     private Boolean bridle;
