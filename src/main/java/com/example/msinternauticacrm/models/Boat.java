@@ -68,9 +68,7 @@ public class Boat {
     @Min(value = 0, message = "Hours must be non-negative.")
     private Integer hours;
 
-    @NotNull(message = "Fuel is required.")
-    @DecimalMin(value = "0.0", message = "Fuel must be non-negative.")
-    private Double fuel;
+    private String fuel;
 
     @NotNull(message = "IPS status is required.")
     private Boolean ips;
