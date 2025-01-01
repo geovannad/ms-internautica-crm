@@ -14,10 +14,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Embeddable
 public class Sailor {
-    @NotBlank(message = "Sailor name is required.")
+    
     private String name;
 
-    @NotBlank(message = "Sailor number is required.")
     private String number;
 
     @Email(message = "Sailor email must be valid.")
