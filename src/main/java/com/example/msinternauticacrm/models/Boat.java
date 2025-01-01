@@ -54,8 +54,7 @@ public class Boat {
     @Min(value = 0, message = "Amount must be non-negative.")
     private Integer amount;
 
-    @NotNull(message = "Model power is required.")
-    @DecimalMin(value = "0.1", message = "Model power must be positive.")
+
     @Field(name = "model_power")
     private String modelPower;
 
@@ -97,10 +96,10 @@ public class Boat {
     private Announcement announcement;
 
     @NotEmpty(message = "At least one keyword is required.")
-    private List<@NotBlank(message = "Keyword cannot be blank.") String> keywords;
+    private List<String> keywords;
 
     @ElementCollection
-    private List<@NotBlank(message = "Equipment cannot be blank.") String> equipment;
+    private List<String> equipment;
 
     @NotBlank(message = "Status is required.")
     private String status;
