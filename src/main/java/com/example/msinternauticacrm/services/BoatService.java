@@ -50,34 +50,73 @@ public class BoatService {
     }
 
     public List<FindBoatAllDTO> listBoats() {
-        List<Boat> resultRepository = boatRepository.findAll();
+    List<Boat> resultRepository = boatRepository.findAll();
 
-        List<FindBoatAllDTO> result = resultRepository.stream()
-                .map(boat -> {
-                    String photo = "";
-                    if(boat.getPhotos() != null) {
-                         photo = boat.getPhotos().get(0);
-                    }
-                    return new FindBoatAllDTO(
-                    boat.getIdBoat(),
-                    photo,
-                    boat.getNameVessel(),
-                    boat.getManufacturer(),
-                    boat.getModel(),
-                    boat.getSize(),
-                    boat.getYear(),
-                    boat.getAmount(),
-                    boat.getModelPower(),
-                    boat.getHours(),
-                    boat.getMarina(),
-                    boat.getValue(),
-                    boat.getOwner().getEmail(),
-                    boat.getStatus()
-                );})
-                .collect(Collectors.toList());
+    List<FindBoatAllDTO> result = resultRepository.stream()
+            .map(boat -> {
+                String photo = "";
+                String ownerEmail = "";
+                String boatName = "";
+                String manufacturer = "";
+                String model = "";
+                String modelPower = "";
+                String marina = "";
+                String status = "";
+                
+                if (boat.getPhotos() != null && !boat.getPhotos().isEmpty()) {
+                    photo = boat.getPhotos().get(0);
+                }
 
-        return result;
-    }
+                if (boat.getOwner() != null && boat.getOwner().getEmail() != null) {
+                    ownerEmail = boat.getOwner().getEmail();
+                }
+
+                if (boat.getNameVessel() != null) {
+                    boatName = boat.getNameVessel();
+                }
+
+                if (boat.getManufacturer() != null) {
+                    manufacturer = boat.getManufacturer();
+                }
+
+                if (boat.getModel() != null) {
+                    model = boat.getModel();
+                }
+
+                if (boat.getModelPower() != null) {
+                    modelPower = boat.getModelPower();
+                }
+
+                if (boat.getMarina() != null) {
+                    marina = boat.getMarina();
+                }
+
+                if (boat.getStatus() != null) {
+                    status = boat.getStatus();
+                }
+
+                return new FindBoatAllDTO(
+                        boat.getIdBoat(),
+                        photo,
+                        boatName,
+                        manufacturer,
+                        model,
+                        boat.getSize(),
+                        boat.getYear(),
+                        boat.getAmount(),
+                        modelPower,
+                        boat.getHours(),
+                        marina,
+                        boat.getValue(),
+                        ownerEmail,
+                        status
+                );
+            })
+            .collect(Collectors.toList());
+
+    return result;
+}
+
 
 
 }
