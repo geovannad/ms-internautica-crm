@@ -31,7 +31,7 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173")
+                        .allowedOrigins("http://51.222.111.75")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
@@ -44,17 +44,18 @@ public class SecurityConfig {
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/adm/api").permitAll()
                         .requestMatchers("/boat/get-by-id/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .csrf(csrf -> csrf.disable())
                 .addFilterBefore(new JwtAuthenticationFilter(admDetailsService, secretKey()),
                         UsernamePasswordAuthenticationFilter.class)
                 .userDetailsService(admDetailsService);
 
+        System.out.println("Configuração de segurança aplicada.");
         return httpSecurity.build();
     }
 
