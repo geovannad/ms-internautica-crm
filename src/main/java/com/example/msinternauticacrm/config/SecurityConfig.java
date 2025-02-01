@@ -48,7 +48,6 @@ public class SecurityConfig {
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/adm/api").permitAll()
                         .requestMatchers("/boat/get-by-id/**").permitAll()
-                        .requestMatchers(regexMatchers(".*get-by-id.*")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())
